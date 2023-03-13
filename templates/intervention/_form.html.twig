@@ -1,0 +1,89 @@
+<form name="intervention" method="post">
+    <div class="mb-3">
+        <label class="form-label required" for="intervention_id_client">Client</label>
+        <select id="intervention_id_client" name="intervention[id_client]" class="form-select">
+
+            {% if clients %}
+                {# si tu trouve des Clients #}
+                {% for client in clients %}
+
+                    {% if client.id == intervention.idClient %} {# Si l'id du visiteur correspond à l'id du travailleur alors #}
+                        {% set selectClient = 'selected' %} {# Séléctionner le visiteur #}
+
+                    {% else %}
+                        {% set selectClient = '' %} {# Sinon ne rien afficher #}
+                    {% endif %}
+                    <option value="{{ client.id }}" {{ selectClient }}>{{ client.nom }}</option>
+
+                {% endfor %}
+            {% else %}
+                <option value="">Aucune donnée trouvée</option>
+
+            {% endif %}
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label required" for="intervention_id_technicien">Technicien</label>
+        <select id="intervention_id_technicien" name="intervention[id_technicien]" class="form-select">
+            {% if techniciens %}
+                {# si tu trouve des secteurs #}
+                {% for technicien in techniciens %}
+                    {% if technicien.id == intervention.idTechnicien %} {# Si l'id region = id region de intervention #}
+                        {% set selectTechnicien = 'selected' %} {# Déclarer une variable. Le selected valide la condition #}
+
+                    {% else %}
+                        {% set selectTechnicien = '' %}  {# Vide car la condition n'est pas remplie #}
+                    {% endif %}
+
+                    <option value="{{ technicien.id }}" {{ selectTechnicien }}>
+                        {{ technicien.nom }}
+                    </option>
+                    {# Lorsque l'on séléctionne un travailleur, sa région s'affichera direct dans la case du menu déroulant  #}
+
+                {% endfor %}
+            {% else %}
+                <option value="">Aucune donnée trouvée</option>
+
+            {% endif %}
+
+        </select>
+    </div>
+
+
+    <div id="intervention">
+        <div class="mb-3">
+            <label for="intervention_adresse" class="form-label required">
+                Adresse :
+            </label>
+            <input type="text" id="intervention_adresse" name="intervention[adresse]" required="required" class="form-control" value="{{ intervention.Adresse }}">
+        </div>
+        <div class="mb-3">
+            <label for="intervention_cp" class="form-label required">
+                Cp :
+            </label>
+            <input type="text" id="intervention_cp" name="intervention[cp]" required="required" class="form-control" value="{{ intervention.Cp }}">
+        </div>
+        <div class="mb-3">
+            <label for="intervention_ville" class="form-label required">
+                Ville :
+            </label>
+            <input type="text" id="intervention_ville" name="intervention[ville]" required="required" class="form-control" value="{{ intervention.Ville }}">
+        </div>
+        <div class="mb-3">
+            <label for="intervention_prix" class="form-label required">
+                Prix :
+            </label>
+            <input type="text" id="intervention_prix" name="intervention[prix]" required="required" class="form-control" value="{{ intervention.Prix }}">
+        </div>
+        <div class="mb-3">
+            <label for="intervention_date" class="form-label required">
+                Date
+            </label>
+            <input type="datetime-local" id="intervention_date" name="intervention[date]" required="required" class="form-control" value="{{ intervention.date|date('Y-m-d\\TH:i')  }}">
+        </div>
+    </div>
+
+    <button class="btn btn-primary">{{ button_submit|default('Save') }} </button>
+</form>

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Technicien{% endblock %}
+
+{% block body %}
+    <h1>Modifier Technicien</h1>
+
+    {{ include('technicien/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-primary" href="{{ path('app_technicien_index') }}">Retour</a>
+
+{% endblock %}

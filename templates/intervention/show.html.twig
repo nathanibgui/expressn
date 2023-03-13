@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intervention{% endblock %}
+
+{% block body %}
+    <h1>Intervention {{ client.nom }} </h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Client</th>
+                <td>{{ client.nom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ intervention.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ intervention.cp }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ intervention.ville }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ intervention.date ? intervention.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ intervention.prix }}</td>
+            </tr>
+            <tr>
+                <th>Technicien</th>
+                <td>{{ technicien.prenom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn-primary btn" href="{{ path('app_intervention_index') }}">Retourner à la liste des interventions</a>
+    <br>
+    <br>
+
+    <a class="btn-primary btn" href="{{ path('app_intervention_edit', {'id': intervention.id}) }}">Modifier</a>
+{% endblock %}

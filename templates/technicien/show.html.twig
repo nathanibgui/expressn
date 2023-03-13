@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Technicien{% endblock %}
+
+{% block body %}
+    <h1>Technicien</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Code</th>
+                <td>{{ technicien.code }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ technicien.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ technicien.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ technicien.tel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_technicien_index') }}">Retour</a>
+
+    <a class="btn btn-primary" href="{{ path('app_technicien_edit', {'id': technicien.id}) }}">Modifier</a>
+
+{% endblock %}

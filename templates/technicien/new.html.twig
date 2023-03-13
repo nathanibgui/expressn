@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Technicien{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau Technicien</h1>
+
+    {{ include('technicien/_form.html.twig') }}
+
+    <a class="btn btn-primary" href="{{ path('app_technicien_index') }}">Retour</a>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Technicien{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="mb-4">Technicien</h1>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for technicien in techniciens %}
+                        <tr>
+                            <td>{{ technicien.code }}</td>
+                            <td>{{ technicien.nom }}</td>
+                            <td>{{ technicien.prenom }}</td>
+                            <td>{{ technicien.tel }}</td>
+                            <td>
+                                <a class="btn btn-primary mr-2" href="{{ path('app_technicien_show', {'id': technicien.id}) }}">Voir +</a>
+                                <a class="btn btn-success" href="{{ path('app_technicien_edit', {'id': technicien.id}) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Aucun résultat trouvé</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a class="btn btn-success" href="{{ path('app_technicien_new') }}">New</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
