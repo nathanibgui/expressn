@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                    <h1 class="mb-4">Clients</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Code postal</th>
+            <th>Ville</th>
+            <th>Téléphone</th>
+            <th>E-mail</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.cp }}</td>
+                <td>{{ client.ville }}</td>
+                <td>{{ client.tel }}</td>
+                <td>{{ client.mail }}</td>
+                <td>
+                    <a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-primary mr-2">Voir +</a>
+                    <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-success">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun client sur le CRM actuellement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_client_new') }}" class="btn btn-success">New</a>
+{% endblock %}
