@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Realisation index{% endblock %}
+
+{% block body %}
+    <h1>Realisation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>Cp</th>
+                <th>Ville</th>
+                <th>Prix</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for realisation in realisations %}
+            <tr>
+                <td>{{ realisation.id }}</td>
+                <td>{{ realisation.adresse }}</td>
+                <td>{{ realisation.cp }}</td>
+                <td>{{ realisation.ville }}</td>
+                <td>{{ realisation.prix }}</td>
+                <td>{{ realisation.date ? realisation.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_realisation_show', {'id': realisation.id}) }}">show</a>
+                    <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_realisation_new') }}">Create new</a>
+{% endblock %}

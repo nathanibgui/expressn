@@ -22,7 +22,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $tabAdmin=['ibguinathan@gmail.com','dantouati@gmail.com','benHayat@gmail.com'];
+        $tabAdmin=['ibguinathan@gmail.com'];
         foreach ($tabAdmin as $mail) {
             $user = new User();
             $user->setEmail($mail);
@@ -31,14 +31,14 @@ class AppFixtures extends Fixture
 
 
             //ici on hash le passeword "toto"
-            $password = $this->hasher->hashPassword($user, 'gsb');
+            $password = $this->hasher->hashPassword($user, 'nathan');
             $user->setPassword($password);
 
             //on envoie en base de donnée
             $manager->persist($user);
             $manager->flush();
         }
-        $tabUser=['nathan@gmail.com','dan@gmail.com','ben@gmail.com'];
+        $tabUser=['nathan@gmail.com'];
         foreach ($tabUser as $mail) {
             $user = new User();
             $user->setEmail($mail);
@@ -46,8 +46,8 @@ class AppFixtures extends Fixture
             $user->setRoles(["ROLE_USER"]);
 
 
-            //ici on hash le passeword "toto"
-            $password = $this->hasher->hashPassword($user, 'gsb');
+            //ici on hash le passeword "xxxx" en question
+            $password = $this->hasher->hashPassword($user, 'nathan');
             $user->setPassword($password);
 
             //on envoie en base de donnée
