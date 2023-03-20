@@ -24,15 +24,15 @@ class RealisationType extends AbstractType
             ->add('save', SubmitType::class)
         ;
 
-        $builder->add('relation',EntityType::class, [
+       // $builder->add('relation',EntityType::class, [
 
-            'class'          => OtherEntity::class,
-            'choice_label'   => 'name',
-            'placeholder'    => 'Choice option',
-            'required'       => true,
+          //  'class'          => OtherEntity::class,
+         //   'choice_label'   => 'name',
+           // 'placeholder'    => 'Choice option',
+           // 'required'       => true,
 
 
-        ]);
+       // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

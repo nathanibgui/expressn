@@ -16,8 +16,12 @@ class RealisationController extends AbstractController
     #[Route('/', name: 'app_realisation_index', methods: ['GET'])]
     public function index(RealisationRepository $realisationRepository): Response
     {
+        $interventionAll = $realisationRepository->findRealisation();
+
+        //dd($interventionAll);
+
         return $this->render('realisation/index.html.twig', [
-            'realisations' => $realisationRepository->findAll(),
+            'realisations' => $interventionAll,  //On prend la requête et on la met dans intervention
         ]);
     }
 
@@ -34,7 +38,7 @@ class RealisationController extends AbstractController
             return $this->redirectToRoute('app_realisation_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('realisation/new.html.twig', [
+        return $this->render('realisation/new.html.twig', [
             'realisation' => $realisation,
             'form' => $form,
         ]);

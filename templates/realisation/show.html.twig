@@ -8,8 +8,8 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ realisation.id }}</td>
+                <th>Client</th>
+                <td>{{ client.nom }}</td>
             </tr>
             <tr>
                 <th>Adresse</th>
@@ -30,6 +30,10 @@
             <tr>
                 <th>Date</th>
                 <td>{{ realisation.date ? realisation.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Technicien</th>
+                <td>{{ technicien.prenom }}</td>
             </tr>
         </tbody>
     </table>

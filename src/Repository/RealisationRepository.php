@@ -39,6 +39,21 @@ class RealisationRepository extends ServiceEntityRepository
         }
     }
 
+    //fonction permettant d'avoir nom des regions a la place des ID
+    public function findRealisation()
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            dql: 'SELECT r, c.nom
+             FROM App\Entity\Realisation AS r, App\Entity\Client AS c
+             WHERE r.id_client = c.id'
+        );
+
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Realisation[] Returns an array of Realisation objects
 //     */

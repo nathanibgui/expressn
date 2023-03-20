@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Client</th>
                 <th>Adresse</th>
                 <th>Cp</th>
                 <th>Ville</th>
@@ -20,15 +20,15 @@
         <tbody>
         {% for realisation in realisations %}
             <tr>
-                <td>{{ realisation.id }}</td>
-                <td>{{ realisation.adresse }}</td>
-                <td>{{ realisation.cp }}</td>
-                <td>{{ realisation.ville }}</td>
-                <td>{{ realisation.prix }}</td>
-                <td>{{ realisation.date ? realisation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ realisation['nom'] }}</td>
+                <td>{{ realisation[0].adresse }}</td>
+                <td>{{ realisation[0].cp }}</td>
+                <td>{{ realisation[0].ville }}</td>
+                <td>{{ realisation[0].prix }}</td>
+                <td>{{ realisation[0].date ? realisation[0].date|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_realisation_show', {'id': realisation.id}) }}">show</a>
-                    <a href="{{ path('app_realisation_edit', {'id': realisation.id}) }}">edit</a>
+                    <a href="{{ path('app_realisation_show', {'id': realisation[0].id}) }}">Voir +</a>
+                    <a href="{{ path('app_realisation_edit', {'id': realisation[0].id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
