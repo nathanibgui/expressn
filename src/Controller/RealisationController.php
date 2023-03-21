@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Realisation;
 use App\Form\RealisationType;
+use App\Repository\ClientRepository;
 use App\Repository\RealisationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,10 +46,16 @@ class RealisationController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_realisation_show', methods: ['GET'])]
-    public function show(Realisation $realisation): Response
+    public function show(Realisation $realisation,ClientRepository $clientRepository): Response
     {
+        $client = $clientRepository->findOneBy(['id'=>$realisation->getIdClient()]);
+
+        // dd($client);
+
+
         return $this->render('realisation/show.html.twig', [
             'realisation' => $realisation,
+            'client'      => $client,
         ]);
     }
 

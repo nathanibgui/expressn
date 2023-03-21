@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Realisation index{% endblock %}
+{% block title %}Intervention{% endblock %}
 
 {% block body %}
-    <h1>Realisation index</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Interventions</h1>
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Client</th>
@@ -14,7 +17,7 @@
                 <th>Ville</th>
                 <th>Prix</th>
                 <th>Date</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,20 +27,25 @@
                 <td>{{ realisation[0].adresse }}</td>
                 <td>{{ realisation[0].cp }}</td>
                 <td>{{ realisation[0].ville }}</td>
-                <td>{{ realisation[0].prix }}</td>
-                <td>{{ realisation[0].date ? realisation[0].date|date('Y-m-d') : '' }}</td>
+                <td>{{ realisation[0].prix }} €</td>
+                <td>{{ realisation[0].date ? realisation[0].date|date('d-m-Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_realisation_show', {'id': realisation[0].id}) }}">Voir +</a>
-                    <a href="{{ path('app_realisation_edit', {'id': realisation[0].id}) }}">Modifier</a>
+                    <a class="btn btn-primary mr-2" href="{{ path('app_realisation_show', {'id': realisation[0].id}) }}">Voir +</a>
+                    <a class="btn btn-success" href="{{ path('app_realisation_edit', {'id': realisation[0].id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucune intervention pour le moment</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_realisation_new') }}">Create new</a>
+
+    <a class="btn btn-success"  href="{{ path('app_realisation_new') }}">New</a>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

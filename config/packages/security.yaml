@@ -17,16 +17,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            form_login:
-                # "login" is the name of the route created previously
-                login_path: login
-                check_path: login
-                default_target_path: app_client_index
             logout:
-                path: logout
-                target: login
-                # where to redirect after logout
-                # target: app_any_route
+                path: app_logout
+            custom_authenticator: App\Security\LoginFormAuthenticator
+                #where to redirect after login
+                target: app_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -37,13 +32,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-
-       # - { path: ^/client, roles: ROLE_USER }
-        #- { path: ^/technicien, roles: ROLE_USER }
-        #- { path: ^/intervention, roles: ROLE_USER }
-        #- { path: ^/realisation, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/client, roles: ROLE_USER }
+        - { path: ^/technicien, roles: ROLE_USER }
+        - { path: ^/intervention, roles: ROLE_USER }
+        - { path: ^/realisation, roles: ROLE_USER }
 
 #* when@test:
    # security:
