@@ -11,6 +11,7 @@ use App\Entity\Visiteur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use http\Client;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class DataFixtures extends Fixture
@@ -27,7 +28,7 @@ class DataFixtures extends Fixture
     //fixtures:load
     public function load(ObjectManager $manager)
     {
-        // Secteur
+        // Client
         $secteur = ["NORD","SUD","EST","OUEST","CENTRE"];
         $saveSecteur = [];
         $s = 0;
@@ -43,7 +44,7 @@ class DataFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
 
-        // Region
+        // Technicien
         $saveRegion = [];
         for($e = 0; $e <= 10; $e++) {
             $region = new Region();
@@ -55,31 +56,19 @@ class DataFixtures extends Fixture
             $saveRegion[$e] = $region->getId();
         }
 
-        // Labo
-        $saveLabo = [];
-        for($i = 0; $i <= 20; $i++) {
-            $labo = new Labo();
-            $labo->setNomLabo($faker->company());
-            $labo->setChefventeLabo($faker->name());
-            $manager->persist($labo);
-            $manager->flush();
-            $saveLabo[$i] = $labo->getId();
-        }
-
-        // Visiteurs
-        $saveVisiteur = [];
+        // Client
         for($e = 0; $e <= 30; $e++) {
-            $visiteur = new Visiteur();
-            $visiteur->setNomVisiteur($faker->firstName());
-            $visiteur->setPrenomVisiteur($faker->lastName());
-            $visiteur->setAdresseVisiteur($faker->address());
-            $visiteur->setCpVisiteur((int) $faker->postcode());
-            $visiteur->setVilleVisiteur($faker->city());
-            $visiteur->setDateembaucheVisiteur($faker->dateTime);
+            $client = new Client();
+            $client->setNom($faker->firstName());
+            $client->setPrenomVisiteur($faker->lastName());
+            $client->setAdresseVisiteur($faker->address());
+            $client->setCpVisiteur((int) $faker->postcode());
+            $client->setVilleVisiteur($faker->city());
+            $client->setDateembaucheVisiteur($faker->dateTime);
             $posSecteur = random_int(0, (count($saveSecteur) - 1));
-            $visiteur->setIdSecteur($saveSecteur[$posSecteur]);
+            $client->setIdSecteur($saveSecteur[$posSecteur]);
             $posLabo = random_int(0, (count($saveLabo) - 1));
-            $visiteur->setIdLabo($saveLabo[$posLabo]);
+            $client->setIdLabo($saveLabo[$posLabo]);
             $manager->persist($visiteur);
             $manager->flush();
             $saveVisiteur[$e] = $visiteur->getId();

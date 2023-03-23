@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Technicien;
 use App\Form\TechnicienType;
 use App\Repository\TechnicienRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,8 +42,10 @@ class TechnicienController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_technicien_show', methods: ['GET'])]
-    public function show(Technicien $technicien): Response
+    public function show($id, EntityManagerInterface $entityManager): Response
     {
+        $technicien  = $entityManager->getRepository(technicien::class)->find($id);
+
         return $this->render('technicien/show.html.twig', [
             'technicien' => $technicien,
         ]);

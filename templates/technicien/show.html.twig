@@ -3,7 +3,10 @@
 {% block title %}Technicien{% endblock %}
 
 {% block body %}
-    <h1>Technicien</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+        <h1>Technicien</h1>
 
     <table class="table">
         <tbody>
@@ -28,6 +31,8 @@
 
     <a class="btn btn-primary" href="{{ path('app_technicien_index') }}">Retour</a>
 
-    <a class="btn btn-primary" href="{{ path('app_technicien_edit', {'id': technicien.id}) }}">Modifier</a>
-
+    <a class="btn btn-success" href="{{ path('app_technicien_edit', {'id': technicien.id}) }}">Modifier</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

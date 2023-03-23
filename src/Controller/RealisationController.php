@@ -6,6 +6,9 @@ use App\Entity\Realisation;
 use App\Form\RealisationType;
 use App\Repository\ClientRepository;
 use App\Repository\RealisationRepository;
+use App\Repository\TechnicienRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,16 +49,23 @@ class RealisationController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_realisation_show', methods: ['GET'])]
-    public function show(Realisation $realisation,ClientRepository $clientRepository): Response
+    public function show($id, EntityManagerInterface $entityManager): Response
     {
-        $client = $clientRepository->findOneBy(['id'=>$realisation->getIdClient()]);
+        //$client     = $clientRepository->findOneBy(['id'=>$realisation->getIdClient()]);
+        //$technicien = $technicienRepository->findOneBy(['id'=> $realisation->getId()]);
 
-        // dd($client);
+        $realisation  = $entityManager->getRepository(realisation::class)->find($id);
+
+        $client       = $realisation->getIdClient();
+        $techniciens  = $realisation->getIdTechnicien();
+
+        //dd($technicien);
 
 
         return $this->render('realisation/show.html.twig', [
             'realisation' => $realisation,
             'client'      => $client,
+            'technicien'  => $techniciens,
         ]);
     }
 

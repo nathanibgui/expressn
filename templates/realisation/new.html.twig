@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Realisation{% endblock %}
+{% block title %}New Intervention{% endblock %}
 
 {% block body %}
-    <h1>Create new Realisation</h1>
 
-    {{ include('realisation/_form.html.twig') }}
 
-    <a href="{{ path('app_realisation_index') }}">back to list</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h1>Créer Intervention</h1>
+                {{ include('realisation/_form.html.twig') }}
+
+                <a class="btn btn-primary" href="{{ path('app_realisation_index') }}">Retour</a>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
