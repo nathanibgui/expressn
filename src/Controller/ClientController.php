@@ -80,3 +80,4 @@ class ClientController extends AbstractController
         return $this->redirectToRoute('app_client_index', [], Response::HTTP_SEE_OTHER);
     }
 }
+

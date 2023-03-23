@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block content  %}
+
+
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -16,8 +19,12 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Earnings (Monthly)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                CA (Mois)</div>
+                            {% if prixMois %}
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    {{ prixMois[0]['SUM(prix)'] | number_format(2,',','.')  }} €
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -34,8 +41,12 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Earnings (Annual)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                CA (Annuel)</div>
+                            {% if prixAnnee %}
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ prixAnnee[0]['SUM(prix)'] | number_format(2,',','.')  }} €
+                            </div>
+                            {% endif %}
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -60,7 +71,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">CA Synthese</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -114,13 +125,13 @@
                     </div>
                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-primary"></i> Punaise de lit
                                         </span>
                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-success"></i> Deratisation
                                         </span>
                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle text-info"></i> Desinsectisation
                                         </span>
                     </div>
                 </div>

@@ -52,7 +52,35 @@ class RealisationRepository extends ServiceEntityRepository
 
 
         return $query->getResult();
-    } 
+    }
+
+
+    public function anneeActuel()
+    {
+        $entityManager = $this->getEntityManager()->getConnection();
+
+        $query = 'SELECT SUM(prix) FROM `realisation` where year(date) = year(NOW());';
+
+
+        $stmt = $entityManager->prepare($query);
+        $rest = $stmt->executeQuery();
+
+        return $rest->fetchAllAssociative();
+
+    }
+
+     public function moisActuel()
+    {
+        $entityManager = $this->getEntityManager()->getConnection();
+
+        $query = 'SELECT SUM(prix) FROM `realisation` where year(date) = year(NOW()) and month(date) = month(NOW());';
+
+        $stmt = $entityManager->prepare($query);
+        $rest = $stmt->executeQuery();
+
+        return $rest->fetchAllAssociative();
+
+    }
 
 //    /**
 //     * @return Realisation[] Returns an array of Realisation objects
