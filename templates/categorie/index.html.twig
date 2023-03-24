@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+    <h1>Categorie</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.nom }}</td>
+                <td>
+                    <a class="btn btn-primary mr-2" href="{{ path('app_categorie_show', {'id': categorie.id}) }}">Voir+</a>
+                    <a class="btn btn-success"      href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Pas de résultat encore</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+         <a class="btn btn-success" href="{{ path('app_categorie_new') }}">New</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
