@@ -3,10 +3,16 @@
 {% block title %}Modifier Realisation{% endblock %}
 
 {% block body %}
-    <h1>Modifier Intervention</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h1>Modifier Intervention</h1>
 
-    {{ include('realisation/_form.html.twig', {'button_label': 'Modifier'}) }}
+            {{ include('realisation/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a class="btn btn-primary" href="{{ path('app_realisation_index') }}">Retour</a>
+            <a class="btn btn-primary" href="{{ path('app_realisation_index') }}">Retour</a>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

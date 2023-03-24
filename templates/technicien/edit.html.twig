@@ -3,10 +3,17 @@
 {% block title %}Modifier Technicien{% endblock %}
 
 {% block body %}
-    <h1>Modifier Technicien</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h1>Modifier Technicien</h1>
 
-    {{ include('technicien/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('technicien/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a class="btn btn-primary" href="{{ path('app_technicien_index') }}">Retour</a>
+            <a class="btn btn-primary" href="{{ path('app_technicien_index') }}">Retour</a>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

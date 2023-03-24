@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Realisation;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,12 +15,15 @@ class RealisationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('id_client')
+            ->add('categorie')
             ->add('adresse')
             ->add('cp')
             ->add('ville')
             ->add('prix')
-            ->add('date')
-            ->add('id_client')
+            ->add('date', DateType::class, [
+                'format' => 'dd-MM-yyyy',
+            ])
             ->add('id_technicien')
             ->add('save', SubmitType::class)
         ;

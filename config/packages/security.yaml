@@ -38,6 +38,7 @@ security:
         - { path: ^/technicien, roles: ROLE_USER }
         - { path: ^/intervention, roles: ROLE_USER }
         - { path: ^/realisation, roles: ROLE_USER }
+        - { path: ^/categorie, roles: ROLE_USER }
 
 #* when@test:
    # security:

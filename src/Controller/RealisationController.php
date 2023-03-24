@@ -55,16 +55,15 @@ class RealisationController extends AbstractController
         //$technicien = $technicienRepository->findOneBy(['id'=> $realisation->getId()]);
 
         $realisation  = $entityManager->getRepository(realisation::class)->find($id);
-
         $client       = $realisation->getIdClient();
         $techniciens  = $realisation->getIdTechnicien();
-
-        //dd($technicien);
-
+        $categories   = $realisation->getCategorie();
+        //dd($categories);
 
         return $this->render('realisation/show.html.twig', [
             'realisation' => $realisation,
             'client'      => $client,
+            'categorie'   => $categories,
             'technicien'  => $techniciens,
         ]);
     }

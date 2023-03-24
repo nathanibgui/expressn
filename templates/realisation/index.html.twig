@@ -16,6 +16,7 @@
                 <th>Cp</th>
                 <th>Ville</th>
                 <th>Prix</th>
+                <th>Categorie</th>
                 <th>Date</th>
                 <th>Actions</th>
             </tr>
@@ -28,10 +29,11 @@
                 <td>{{ realisation[0].cp }}</td>
                 <td>{{ realisation[0].ville }}</td>
                 <td>{{ realisation[0].prix }} €</td>
+                <td>{{ realisation['Categorie'] }}</td>
                 <td>{{ realisation[0].date ? realisation[0].date|date('d-m-Y') : '' }}</td>
                 <td>
                     <a class="btn btn-primary mr-2" href="{{ path('app_realisation_show', {'id': realisation[0].id}) }}">Voir +</a>
-                    <a class="btn btn-success" href="{{ path('app_realisation_edit', {'id': realisation[0].id}) }}">Modifier</a>
+                    <a class="btn btn-success"      href="{{ path('app_realisation_edit', {'id': realisation[0].id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

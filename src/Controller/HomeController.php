@@ -13,10 +13,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(AuthenticationUtils $authenticationUtils, RealisationRepository $realisationRepository): Response
     {
-
+        // corresponds au CA de l'annee actue:
         $prixAnnee = $realisationRepository->anneeActuel();
 
+        // corresponds au CA du mois actuel
         $prixMois = $realisationRepository->moisActuel();
+
+        $prixJour = $realisationRepository->jourActuel();
 
         //dd($prixAnnee);
         //dd($prixMois);
@@ -28,6 +31,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'prixAnnee' => $prixAnnee,
             'prixMois' => $prixMois,
+            'prixJour' => $prixJour,
             'last_username' => $lastUsername
         ]);
     }

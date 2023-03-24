@@ -3,10 +3,17 @@
 {% block title %}Modifier Client{% endblock %}
 
 {% block body %}
-    <h1>Modifier Client</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <h1>Modifier Client</h1>
 
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('client/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a class="btn btn-primary" href="{{ path('app_client_index') }}">Retour</a>
+            <a class="btn btn-primary" href="{{ path('app_client_index') }}">Retour</a>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

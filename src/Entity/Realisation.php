@@ -38,6 +38,10 @@ class Realisation
     #[ORM\ManyToMany(targetEntity: Technicien::class)]
     private Collection $id_technicien;
 
+    #[ORM\ManyToOne(inversedBy: 'realisations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
+
     public function __construct()
     {
         $this->id_technicien = new ArrayCollection();
@@ -140,6 +144,18 @@ class Realisation
     public function removeIdTechnicien(Technicien $idTechnicien): self
     {
         $this->id_technicien->removeElement($idTechnicien);
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

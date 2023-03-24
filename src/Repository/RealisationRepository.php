@@ -45,9 +45,9 @@ class RealisationRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            dql: 'SELECT r, c.nom
-             FROM App\Entity\Realisation AS r, App\Entity\Client AS c
-             WHERE r.id_client = c.id'
+            dql: 'SELECT r, c.nom, cat.nom as Categorie
+             FROM App\Entity\Realisation AS r, App\Entity\Client AS c, App\Entity\Categorie AS cat
+             WHERE r.id_client = c.id and r.categorie = cat.id'
         );
 
 
@@ -74,6 +74,19 @@ class RealisationRepository extends ServiceEntityRepository
         $entityManager = $this->getEntityManager()->getConnection();
 
         $query = 'SELECT SUM(prix) FROM `realisation` where year(date) = year(NOW()) and month(date) = month(NOW());';
+
+        $stmt = $entityManager->prepare($query);
+        $rest = $stmt->executeQuery();
+
+        return $rest->fetchAllAssociative();
+
+    }
+
+    public function jourActuel()
+    {
+        $entityManager = $this->getEntityManager()->getConnection();
+
+        $query = 'SELECT SUM(prix) FROM `realisation` where year(date) = year(NOW()) and month(date) = month(NOW()) and day(date) = day(NOW());';
 
         $stmt = $entityManager->prepare($query);
         $rest = $stmt->executeQuery();
